@@ -9,6 +9,7 @@ public class Test {
         System.out.println(enumSingleton1.getInfo());
         enumSingleton1.setInfo("Test");
         System.out.println(enumSingleton1.getInfo());
+        //test
 
     }
 }
