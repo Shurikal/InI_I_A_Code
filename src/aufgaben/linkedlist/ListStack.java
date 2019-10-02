@@ -6,7 +6,6 @@ public class ListStack<E> {
     private int size = 0;
 
     public ListStack(){
-
     }
 
     public boolean push(final E element){
@@ -26,7 +25,7 @@ public class ListStack<E> {
         return true;
     }
 
-    public Node<E> pop(){
+    public E pop(){
         if(root== null){
             return null;
         }
@@ -34,7 +33,7 @@ public class ListStack<E> {
         Node<E> cache = root;
         if(cache.next==null){
             root = null;
-            return cache;
+            return cache.data;
         }
         while(cache.next!=null){
             if(cache.next.next!=null){
@@ -45,16 +44,16 @@ public class ListStack<E> {
         }
         Node<E> c = cache.next;
         cache.next = null;
-        return c;
+        return c.data;
     }
 
-    public Node<E> top(){
+    public E top(){
         Node<E> cache;
         cache = root;
         while(cache.next!=null){
             cache = cache.next;
         }
-        return cache;
+        return cache.data;
     }
 
     public int size(){
@@ -63,6 +62,11 @@ public class ListStack<E> {
 
     public boolean isEmpty(){
         return root==null;
+    }
+
+    private class Node<F> {
+        F data;
+        Node next;
     }
 
 }
