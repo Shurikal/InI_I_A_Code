@@ -1,16 +1,17 @@
 package aufgaben.linkedlist;
 
 public class Person {
-        String name,firstname, adresse;
+        String name,firstname;
+        Adresse adr;
 
-        public Person(String name, String firstname, String adresse){
+        public Person(String name, String firstname, Adresse adr){
             this.name = name;
             this.firstname = firstname;
-            this.adresse = adresse;
+            this.adr = adr;
         }
 
         @Override
         public String toString(){
-            return ("Vorname \t:\t" +firstname + "\r\nNachname\t:\t" + name + "\r\nAdresse \t:\t" + adresse);
+            return ("Vorname \t:\t" +firstname + "\r\nNachname\t:\t" + name + "\r\nAdresse \t:\t" + adr.toString());
         }
 }
