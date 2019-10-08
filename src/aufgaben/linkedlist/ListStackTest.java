@@ -4,7 +4,7 @@ public class ListStackTest {
 
     public static void main(String[] args){
 
-        ListStack<Person> ls = new ListStack<>();
+        SingleLinkedList<Person> ls = new SingleLinkedList<>();
         Person max = new Person("Muster","Max",new Adresse("Musterstrasse",12,"Musterhausen"));
         Person anna = new Person("Muster","Anna",new Adresse("Musterstrasse",12,"Musterhausen"));
 

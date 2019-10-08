@@ -102,7 +102,7 @@ public class List {
             System.out.println("Liste ist leer");
             return;
         }
-        ListStack<Node> ls = new ListStack<>();
+        SingleLinkedList<Node> ls = new SingleLinkedList<>();
         Node n = head;
         while(n!=null){
             ls.push(n);

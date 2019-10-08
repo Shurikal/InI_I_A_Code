@@ -1,11 +1,11 @@
 package aufgaben.linkedlist;
 
-public class ListStack<E> {
+public class SingleLinkedList<E> {
 
     private Node root;
     private int size = 0;
 
-    public ListStack(){
+    public SingleLinkedList(){
     }
 
     public boolean push(final E element){
