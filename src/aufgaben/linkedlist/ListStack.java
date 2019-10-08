@@ -2,7 +2,7 @@ package aufgaben.linkedlist;
 
 public class ListStack<E> {
 
-    private Node<E> root;
+    private Node root;
     private int size = 0;
 
     public ListStack(){
@@ -11,11 +11,11 @@ public class ListStack<E> {
     public boolean push(final E element){
         size++;
         if(root==null){
-            root = new Node<>();
+            root = new Node();
             root.data = element;
             return true;
         }
-        Node<E> cache;
+        Node cache;
         cache = root;
         while(cache.next!=null){
             cache = cache.next;
@@ -30,25 +30,21 @@ public class ListStack<E> {
             return null;
         }
         size--;
-        Node<E> cache = root;
+        Node cache = root;
         if(cache.next==null){
             root = null;
             return cache.data;
         }
-        while(cache.next!=null){
-            if(cache.next.next!=null){
-                cache = cache.next;
-            }else{
-                break;
-            }
+        while(cache.next.next!=null){
+          cache = cache.next;
         }
-        Node<E> c = cache.next;
+        Node c = cache.next;
         cache.next = null;
         return c.data;
     }
 
     public E top(){
-        Node<E> cache;
+        Node cache;
         cache = root;
         while(cache.next!=null){
             cache = cache.next;
@@ -64,8 +60,8 @@ public class ListStack<E> {
         return root==null;
     }
 
-    private class Node<F> {
-        F data;
+    private class Node{
+        E data;
         Node next;
     }
 
