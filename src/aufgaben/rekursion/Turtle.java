@@ -2,41 +2,46 @@ package aufgaben.rekursion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Turtle extends JFrame {
 
     public void start(){
-        System.out.println(getColor());
+        randomWalk();
+
+    }
+
+    public void test(){
         penDown();
-        walk();
-        System.out.println(getColor());
         for(int i = 0; i<500;i++){
             if(getColor()!=-1){
-                penUp();
+                setColor(Color.WHITE);
+                turnRight();
+                walk();
+
+            }else{
+                setColor(Color.BLACK);
                 walk();
                 turnLeft();
 
-            }else{
-                penDown();
-                walk();
-                turnRight();
             }
             System.out.println(i);
         }
-
     }
 
     public void randomWalk(){
         setColor(Color.BLACK);
         Random r = new Random();
         penDown();
-        for(int i = 0; i<200 ; i++) {
-            for(int x = 0; x < r.nextInt(400);x++){
+        for(int i = 0; i<20000 ; i++) {
+
+            for(int x = 0; x < r.nextInt(50);x++){
                 walk();
             }
-            if(r.nextInt(2)==1){
+            if(r.nextInt(1)==1){
                 turnLeft();
             }else{
                 turnRight();
@@ -83,8 +88,9 @@ public class Turtle extends JFrame {
         }
     }
 
-    public void walk(int i) {
 
+    public void walk(int i) {
+        //Todo not working
         int xCache = cPosx + (int) (Math.cos(angle) * i);
         int yCache = cPosy - (int) (Math.sin(angle) * i);
 
@@ -135,8 +141,6 @@ public class Turtle extends JFrame {
     }
 
     public int getColor(){
-        System.out.println(cPosx);
-        System.out.println(cPosy);
        return image.getRGB(cPosx,cPosy);
     }
 
@@ -168,19 +172,28 @@ public class Turtle extends JFrame {
 
     public Turtle(){
         image = new BufferedImage(CANVAS_WIDTH,CANVAS_HEIGHT, BufferedImage.TYPE_INT_RGB);
+        BufferedImage result = new BufferedImage(2*CANVAS_WIDTH,2*CANVAS_HEIGHT,BufferedImage.TYPE_INT_RGB);
         g = image.createGraphics();
 
         g.setBackground(Color.WHITE);
         g.fillRect(0, 0, image.getWidth(), image.getHeight());
         g.setColor(Color.BLACK);
-        g.drawLine(0,0,1,1);
         cPosx = CANVAS_WIDTH/2;
         cPosy =CANVAS_HEIGHT/2;
         angle = 0;
 
         start();
 
-        getContentPane().add(new JLabel(new ImageIcon(image)));
+
+
+        AffineTransform at = new AffineTransform();
+        at.scale(2.0,2.0);
+
+        AffineTransformOp scaleOp =
+                new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        result = scaleOp.filter(image, result);
+
+        getContentPane().add(new JLabel(new ImageIcon(result)));
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
