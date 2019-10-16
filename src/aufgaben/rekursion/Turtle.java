@@ -3,16 +3,26 @@ package aufgaben.rekursion;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Turtle extends JFrame {
 
     public void start(){
 
+        Random r = new Random(1);
+
         setColor(Color.BLACK);
         penDown();
-        turnRight(Math.PI/4);
-        walk(500);
-
+        for(int i = 0; i<5000 ; i++) {
+            for(int x = 0; x < r.nextInt(200);x++){
+                walk();
+            }
+            if(r.nextInt(2)==1){
+                turnLeft();
+            }else{
+                turnRight();
+            }
+        }
 
 
     }
@@ -23,6 +33,29 @@ public class Turtle extends JFrame {
 
     public void penUp(){
         penDown = false;
+    }
+
+    public void walk(){
+        int xCache = cPosx+(int) (Math.cos(angle));
+        int yCache = cPosy +(int) (Math.sin(angle));
+
+        if(xCache <0 && yCache > 0 && yCache<image.getHeight()){
+            cPosx = getWidth()-1;
+            g.drawLine(cPosx,cPosy,cPosx,cPosy);
+        }else if(xCache >image.getWidth()-1 && yCache > 0 && yCache<image.getHeight()){
+            cPosx = 0;
+            g.drawLine(cPosx,cPosy,cPosx,cPosy);
+        }else if(yCache < 0 && xCache >0 && xCache<image.getWidth()){
+            cPosy = getHeight()-1;
+            g.drawLine(cPosx,cPosy,cPosx,cPosy);
+        }else if(yCache > image.getHeight()-1 && xCache >0 && xCache<image.getWidth()){
+            cPosy = 0;
+            g.drawLine(cPosx,cPosy,cPosx,cPosy);
+        }else{
+            cPosx = xCache;
+            cPosy = yCache;
+            g.drawLine(cPosx,cPosy,cPosx,cPosy);
+        }
     }
 
     public void walk(int i) {
@@ -56,11 +89,19 @@ public class Turtle extends JFrame {
     }
 
     public void turnLeft(double rad){
-        angle = angle + rad;
+        angle = angle - rad;
+    }
+
+    public void turnLeft(){
+        angle = angle - Math.PI/2;
     }
 
     public void turnRight(double rad){
-        angle = angle - rad;
+        angle = angle + rad;
+    }
+
+    public void turnRight(){
+        angle = angle + Math.PI/2;
     }
 
     public void setPos(int x, int y){
