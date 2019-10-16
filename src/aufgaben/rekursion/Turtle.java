@@ -8,13 +8,32 @@ import java.util.Random;
 public class Turtle extends JFrame {
 
     public void start(){
-
-        Random r = new Random(1);
-
-        setColor(Color.BLACK);
+        System.out.println(getColor());
         penDown();
-        for(int i = 0; i<5000 ; i++) {
-            for(int x = 0; x < r.nextInt(200);x++){
+        walk();
+        System.out.println(getColor());
+        for(int i = 0; i<500;i++){
+            if(getColor()!=-1){
+                penUp();
+                walk();
+                turnLeft();
+
+            }else{
+                penDown();
+                walk();
+                turnRight();
+            }
+            System.out.println(i);
+        }
+
+    }
+
+    public void randomWalk(){
+        setColor(Color.BLACK);
+        Random r = new Random();
+        penDown();
+        for(int i = 0; i<200 ; i++) {
+            for(int x = 0; x < r.nextInt(400);x++){
                 walk();
             }
             if(r.nextInt(2)==1){
@@ -23,8 +42,6 @@ public class Turtle extends JFrame {
                 turnRight();
             }
         }
-
-
     }
 
     public void penDown(){
@@ -39,22 +56,30 @@ public class Turtle extends JFrame {
         int xCache = cPosx+(int) (Math.cos(angle));
         int yCache = cPosy +(int) (Math.sin(angle));
 
-        if(xCache <0 && yCache > 0 && yCache<image.getHeight()){
-            cPosx = getWidth()-1;
-            g.drawLine(cPosx,cPosy,cPosx,cPosy);
+        if(xCache <1 && yCache > 0 && yCache<image.getHeight()){
+            cPosx = image.getWidth()-1;
+            if(penDown) {
+                g.drawLine(cPosx, cPosy, cPosx, cPosy);
+            }
         }else if(xCache >image.getWidth()-1 && yCache > 0 && yCache<image.getHeight()){
-            cPosx = 0;
-            g.drawLine(cPosx,cPosy,cPosx,cPosy);
-        }else if(yCache < 0 && xCache >0 && xCache<image.getWidth()){
-            cPosy = getHeight()-1;
-            g.drawLine(cPosx,cPosy,cPosx,cPosy);
+            cPosx = 1;
+            if(penDown) {
+                g.drawLine(cPosx, cPosy, cPosx, cPosy);
+            }
+        }else if(yCache < 1 && xCache >0 && xCache<image.getWidth()){
+            cPosy = image.getHeight()-1;
+            if(penDown) {
+                g.drawLine(cPosx, cPosy, cPosx, cPosy);
+            }
         }else if(yCache > image.getHeight()-1 && xCache >0 && xCache<image.getWidth()){
-            cPosy = 0;
+            cPosy = 1;
             g.drawLine(cPosx,cPosy,cPosx,cPosy);
         }else{
             cPosx = xCache;
             cPosy = yCache;
-            g.drawLine(cPosx,cPosy,cPosx,cPosy);
+            if(penDown) {
+                g.drawLine(cPosx, cPosy, cPosx, cPosy);
+            }
         }
     }
 
@@ -110,7 +135,8 @@ public class Turtle extends JFrame {
     }
 
     public int getColor(){
-
+        System.out.println(cPosx);
+        System.out.println(cPosy);
        return image.getRGB(cPosx,cPosy);
     }
 
