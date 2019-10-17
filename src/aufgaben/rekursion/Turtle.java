@@ -10,15 +10,72 @@ import java.util.Random;
 public class Turtle extends JFrame {
 
     public void start(){
-        randomWalk();
-
+        //kreuz();
+        fliege();
     }
+
+    public void some(){
+        setPos(100, 600);
+
+        penDown();
+
+
+        for(int i = 300;i>0;i--){
+            int cache = i;
+            if(cache%7==0 || cache%5==0){
+                turnRight();
+            }else{
+                turnLeft();
+            }
+            for(int x =0; x<cache;x++){
+                walk();
+            }
+        }
+    }
+
+    public void kreuz(){
+        setPos(image.getWidth() / 2, (2*image.getHeight()/3));
+        penDown();
+
+
+        for(int i = 200;i>0;i--){
+            int cache = i;
+            if(cache%3==0){
+                turnRight();
+            }else{
+                turnLeft();
+            }
+            for(int x =0; x<cache;x++){
+                walk();
+            }
+        }
+    }
+
+    public void fliege(){
+
+        penDown();
+
+
+        for(int i = 100;i>0;i--){
+            int cache = i;
+            if(cache%4==0){
+                turnRight();
+            }else{
+                turnLeft();
+            }
+            for(int x =0; x<cache;x++){
+                walk();
+            }
+        }
+    }
+
 
     public void test(){
         penDown();
         for(int i = 0; i<500;i++){
             if(getColor()!=-1){
                 setColor(Color.WHITE);
+                turnRight();
                 turnRight();
                 walk();
 
@@ -210,7 +267,7 @@ public class Turtle extends JFrame {
     private double angle;
     private boolean penDown;
 
-    private static final int CANVAS_WIDTH  = 640;
-    private static final int CANVAS_HEIGHT = 480;
+    private static final int CANVAS_WIDTH  = 1500;
+    private static final int CANVAS_HEIGHT = 1000;
 
 }

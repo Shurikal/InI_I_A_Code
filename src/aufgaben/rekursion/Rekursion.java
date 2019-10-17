@@ -39,7 +39,11 @@ public class Rekursion {
 
     public int hof(int n){
 
-        hofbuffer = new int[n+2];
+        if(hofbuffer!=null && n<hofbuffer.length){
+            return hofbuffer[n];
+        }
+
+        hofbuffer = new int[n+3];
         hofbuffer[1] = 1;
         hofbuffer[2] = 1;
         ToFile.writeToFile(""+hofbuffer[1]);
