@@ -1,11 +1,20 @@
 package aufgaben.rekursion;
 
+import java.util.Arrays;
+
 public class Rekursion {
 
     int[] hofbuffer;
 
     public static void main(String[] args) {
-        System.out.println(new Rekursion().hof(1000));
+        //System.out.println(pascalDreieck(30,12));
+
+        int[] i = {12, 23, 33};
+        int[] b = sortieren(i);
+
+        for(int x = 0; x<i.length;x++){
+            System.out.println(b[x]);
+        }
     }
 
     /**
@@ -62,4 +71,39 @@ public class Rekursion {
     public int[] getHofbuffer() {
         return hofbuffer;
     }
+
+    public static int pascalDreieck(int i, int j){
+        System.out.println("Zeile \t"+ i + " Spalte \t" + j);
+        if(j > i || i <0){
+            return -1;
+        }
+        if( j == 1 || i == j){
+            return 1;
+        }
+        return (pascalDreieck(i - 1, j - 1) + pascalDreieck(i - 1, j));
+    }
+
+
+    public static int[] sortieren(int[] i){
+        boolean b = true;
+        int y = 0;
+        while(y < i.length-1){
+            if(i[y]>i[y+1]){
+                b = false;
+                break;
+            }
+            y++;
+        }
+        if(b){
+            System.out.println("Sortiert");
+            return i;
+        }else{
+            int cache = i[y];
+            i[y] = i[y+1];
+            i[y+1] = cache;
+            return sortieren(i);
+        }
+
+    }
+
 }
