@@ -97,14 +97,7 @@ public class TurtleGraphic extends JFrame {
         TurtleGraphic demo = new TurtleGraphic("Demo",800,600);
         demo.setPosition(0,0);
         demo.penDown();
-        koch(8,1,500,demo);
-        demo.turn(-90);
-        koch(8,1,500,demo);
-
-        demo.turn(-90);
-        koch(8,1,500,demo);
-        demo.turn(-90);
-        koch(8,1,500,demo);
+        schneeflocke(demo);
         demo.repaint();
     }
 
@@ -136,4 +129,27 @@ public class TurtleGraphic extends JFrame {
         }
     }
 
+    public static void stern(int t,int vz,double s,TurtleGraphic turtle){
+        if(t ==0){
+            turtle.forward(s);
+        }else{
+            turtle.forward(s/3);
+            turtle.turn(vz*60);
+            stern(t-1,1,s/3,turtle);
+            turtle.turn(-vz*120);
+            stern(t-1,1,s/3,turtle);
+            turtle.turn(vz*60);
+            turtle.forward(s/3);
+        }
+    }
+
+    public static void schneeflocke(TurtleGraphic turtle){
+        int t = 6;
+        double s = 1000;
+        stern(t,1,s,turtle);
+        turtle.turn(-120);
+        stern(t,1,s,turtle);
+        turtle.turn(-120);
+        stern(t,1,s,turtle);
+    }
 }
