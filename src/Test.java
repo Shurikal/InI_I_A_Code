@@ -1,4 +1,4 @@
-import design_patterns.EnumSingleton;
+import design_patterns.singleton.EnumSingleton;
 
 public class Test {
 
