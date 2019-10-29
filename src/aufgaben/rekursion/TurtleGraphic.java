@@ -95,7 +95,7 @@ public class TurtleGraphic extends JFrame {
 
     public static void main(String[] arg) {
         TurtleGraphic demo = new TurtleGraphic("Demo",800,600);
-        demo.setPosition(0,0);
+        demo.setPosition(-100,100);
         demo.penDown();
         schneeflocke(demo);
         demo.repaint();
@@ -133,18 +133,18 @@ public class TurtleGraphic extends JFrame {
         if(t ==0){
             turtle.forward(s);
         }else{
-            turtle.forward(s/3);
+            stern(t-1,1,s/3,turtle);
             turtle.turn(vz*60);
             stern(t-1,1,s/3,turtle);
             turtle.turn(-vz*120);
             stern(t-1,1,s/3,turtle);
             turtle.turn(vz*60);
-            turtle.forward(s/3);
+            stern(t-1,1,s/3,turtle);
         }
     }
 
     public static void schneeflocke(TurtleGraphic turtle){
-        int t = 6;
+        int t = 9;
         double s = 1000;
         stern(t,1,s,turtle);
         turtle.turn(-120);
