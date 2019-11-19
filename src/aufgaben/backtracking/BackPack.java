@@ -15,84 +15,59 @@ public class BackPack {
     private int counter=0;
 
     public static void main(String[] args){
-        //new BackPack().fill(0);
         BackPack bp = new BackPack();
-        for(int i = 0; i < weight.length;i++){
-            bp.test(i);
-            System.out.println("");
-        }
     }
 
     public BackPack(){
         bags = new ArrayList<>();
         backPack = new Stack<>();
+
+        for(int i = 0; i < weight.length;i++){
+            test(i,backPack);
+            backPack.clear();
+        }
+
+        //Check valid bags
+        int old_value = 0;
+        Stack<Integer> most_value= new Stack<>();
+        for(Stack<Integer> backs : bags){
+            int new_value =0 ;
+            for(int x : backs){
+                new_value += value[x];
+            }
+            if(old_value < new_value){
+                most_value = backs;
+                old_value = new_value;
+            }
+        }
+
+        System.out.println(old_value);
+        System.out.print("Index: [");
+        most_value.forEach(integer -> System.out.print(" "+ weight[integer]));
+        System.out.println(" ]");
     }
 
     //Backpack erstes Element hinzufuegen
     //testen ob voll
     //Backpack zweites Element
-    public void test(int index){
-        backPack.add(index);
-        if(b_check()){
-            bags.add((Stack<Integer>) backPack.clone());
+    public void test(int index, Stack<Integer> bp){
+        bp.add(index);
+        if(b_check(bp)){
+            bags.add((Stack<Integer>) bp.clone());
             for(int i =index+1; i < weight.length;i++){
-                test(i);
-                System.out.println("....");
+                test(i,(Stack<Integer>) bp.clone());
             }
         }else{
-            backPack.pop();
-            System.out.println("Ende erreicht");
+            bp.pop();
         }
-
     }
 
-    public int check(Stack<Integer> args){
+    public boolean b_check(Stack<Integer> bp){
         int cache = 0;
-        for (int arg : args) {
-            cache += weight[arg];
-        }
-        return cache;
-    }
-
-    public boolean b_check(){
-        int cache = 0;
-
-        for(int x : backPack){
-            System.out.println("Weight in backpack: " + weight[x]);
+        for(int x : bp){
             cache += weight[x];
         }
-        System.out.println("Current Weight: " +cache);
         return cache <= maxWeight;
-    }
-
-    public void fill(){
-        for(int index = 0; index < weight.length;index++){
-
-            if(!backPack.isEmpty()){
-                backPack.clear();
-                System.out.println(backPack.size());
-            }
-
-            //Add first item
-            backPack.add(index);
-            System.out.println("Index :" + index);
-            //Check if over maximum weight
-            if(b_check()){
-                bags.add((Stack<Integer>) backPack.clone());
-                //Add next item
-                for(int i = index+1; i< weight.length; i++){
-                    backPack.add(i);
-                    System.out.println("I : " + i);
-
-                    if(b_check()){
-                        bags.add((Stack<Integer>) backPack.clone());
-                    }else{
-                        System.out.println(backPack.pop()+ " : wurde gelöscht");
-                    }
-
-                }
-            }
-        }
     }
 
 }
