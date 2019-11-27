@@ -1,6 +1,11 @@
-import schnittstelle.IKaffee;
-import decorator.*;
-import konkreteKomponenten.*;
+import design_patterns.decorator.aufgabe.decorator.ExtraMilch;
+import design_patterns.decorator.aufgabe.decorator.ExtraStark;
+import design_patterns.decorator.aufgabe.decorator.ExtraZucker;
+import design_patterns.decorator.aufgabe.decorator.Karamell;
+import design_patterns.decorator.aufgabe.konkreteKomponenten.Creme;
+import design_patterns.decorator.aufgabe.konkreteKomponenten.Espresso;
+import design_patterns.decorator.aufgabe.konkreteKomponenten.Macchiato;
+import design_patterns.decorator.aufgabe.schnittstelle.IKaffee;
 
 public class Client {
 

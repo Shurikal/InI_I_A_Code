@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class BackPack {
-    final static int[] weight = new int[] { 5, 10, 13, 7, 8, 2, 9, 12, 17 };
-    final static int[] value = new int[] { 3, 1, 4, 1, 5, 9, 2, 6, 5 };
+    final static int[] weight = new int[] {0, 5, 10, 13, 7, 8, 2, 9, 12, 17 };
+    final static int[] value = new int[]  {0, 3,  1,  4, 1, 5, 9, 2,  6,  5 };
 
     final int maxWeight = 30;
 
@@ -22,10 +22,12 @@ public class BackPack {
         bags = new ArrayList<>();
         backPack = new Stack<>();
 
-        for(int i = 0; i < weight.length;i++){
+        /*for(int i = 0; i < weight.length;i++){
             test(i,backPack);
             backPack.clear();
-        }
+        }*/
+
+        test(0, backPack);
 
         //Check valid bags
         int old_value = 0;
