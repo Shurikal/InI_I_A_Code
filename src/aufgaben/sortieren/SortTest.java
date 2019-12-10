@@ -6,6 +6,8 @@ import java.util.Random;
 public class SortTest {
 
     public static void main(String[] args) {
+        int a = 0;
+
         int[] list = new int[10];
         Random r = new Random();
 
@@ -15,8 +17,7 @@ public class SortTest {
 
         Arrays.stream(list).forEach(System.out::println);
         System.out.println("######################");
-        new BubbleSort().sort(list);
-
+        new ShellSort().sort(list);
 
         Arrays.stream(list).forEach(System.out::println);
         System.out.println("######################");

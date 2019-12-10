@@ -2,7 +2,6 @@ package aufgaben.sortieren;
 
 public class StraightSelection extends A_Sortieren {
 
-
     @Override
     void sort(int[] list) {
         for(int i = 0; i<list.length-1; i++){
