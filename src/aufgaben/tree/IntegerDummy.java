@@ -2,9 +2,7 @@ package aufgaben.tree;
 
 public class IntegerDummy extends IntegerTreeWithDummy {
     public IntegerDummy() {
-
         super();
-
     }
 
     @Override
